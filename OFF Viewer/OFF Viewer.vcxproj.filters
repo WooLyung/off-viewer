@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\source">
+      <UniqueIdentifier>{4b33703e-d773-4b0c-8131-18e2b0dfea5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\source\OVCamera">
+      <UniqueIdentifier>{e8a22365-b7d6-4db3-953c-15d95ea4a3b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\source\OVModel">
+      <UniqueIdentifier>{d4ab6160-61eb-4d4f-8fe9-85512ac4f38f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\source\OVShaderProg">
+      <UniqueIdentifier>{766e0a36-87b4-40ff-89aa-1f78b0cdea31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\source\OVShaderProg\OVShader">
+      <UniqueIdentifier>{bdbb965e-98e2-4e78-827f-2267c3fbce0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\source\OVOption">
+      <UniqueIdentifier>{7347fe75-ff45-43a3-b55b-d2225ac11aaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\source\OVWindow">
+      <UniqueIdentifier>{af79b92b-f52c-4133-ad14-8beb6d1ef25a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\source\common">
+      <UniqueIdentifier>{754f1710-9177-4626-9f1e-a33412547bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\shader">
+      <UniqueIdentifier>{76181a35-69f4-4e1d-aa29-cbf7a9111fa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\model">
+      <UniqueIdentifier>{2a7c6796-96ef-421f-ab0b-faadfa6d8ca9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="OVShader.cpp">
+      <Filter>소스 파일\source\OVShaderProg\OVShader</Filter>
+    </ClCompile>
+    <ClCompile Include="OVShaderProg.cpp">
+      <Filter>소스 파일\source\OVShaderProg</Filter>
+    </ClCompile>
+    <ClCompile Include="common.cpp">
+      <Filter>소스 파일\source\common</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일\source</Filter>
+    </ClCompile>
+    <ClCompile Include="OVModel.cpp">
+      <Filter>소스 파일\source\OVModel</Filter>
+    </ClCompile>
+    <ClCompile Include="OVCamera.cpp">
+      <Filter>소스 파일\source\OVCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="OVWindow.cpp">
+      <Filter>소스 파일\source\OVWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="OVOption.cpp">
+      <Filter>소스 파일\source\OVOption</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="OVShader.h">
+      <Filter>소스 파일\source\OVShaderProg\OVShader</Filter>
+    </ClInclude>
+    <ClInclude Include="OVShaderProg.h">
+      <Filter>소스 파일\source\OVShaderProg</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>소스 파일\source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="OVModel.h">
+      <Filter>소스 파일\source\OVModel</Filter>
+    </ClInclude>
+    <ClInclude Include="OVCamera.h">
+      <Filter>소스 파일\source\OVCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="OVWindow.h">
+      <Filter>소스 파일\source\OVWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="OVOption.h">
+      <Filter>소스 파일\source\OVOption</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shader.vert">
+      <Filter>소스 파일\shader</Filter>
+    </None>
+    <None Include="shader.frag">
+      <Filter>소스 파일\shader</Filter>
+    </None>
+    <None Include="simple.off">
+      <Filter>소스 파일\model</Filter>
+    </None>
+  </ItemGroup>
+</Project>
