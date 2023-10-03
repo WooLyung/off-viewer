@@ -10,6 +10,7 @@ private:
 	int size = 500;
 	int render = 2; // point, edge, face
 	int light = 1;
+	int normal = 0;
 
 	OVOption() {};
 
@@ -21,4 +22,5 @@ public:
 	int getSize();
 	int getRender();
 	int getLight();
+	int getNormal();
 };

@@ -12,7 +12,7 @@ OVOption* OVOption::getInstance()
 
 void OVOption::readParams(int argc, const char* argv[])
 {
-	const char* msg = "usage: cmd [-f fileName] [-s size] [-r {p|e|f}] [-l {0|1|2}]\n";
+	const char* msg = "usage: cmd [-f fileName] [-s size] [-r {p|e|f}] [-l {0|1|2}] [-n {ccw|cw}]\n";
 	bool name = false;
 
 	for (int i = 1; i < argc; i++)
@@ -70,6 +70,19 @@ void OVOption::readParams(int argc, const char* argv[])
 				exit(0);
 			}
 		}
+		else if (strcmp(argv[i], "-n") == 0)
+		{
+			i++;
+			if (strcmp(argv[i], "ccw") == 0)
+				normal = 0;
+			else if (strcmp(argv[i], "cw") == 0)
+				normal = 1;
+			else
+			{
+				printf(msg);
+				exit(0);
+			}
+		}
 		else
 		{
 			printf(msg);
@@ -102,4 +115,9 @@ int OVOption::getRender()
 int OVOption::getLight()
 {
 	return light;
+}
+
+int OVOption::getNormal()
+{
+	return normal;
 }

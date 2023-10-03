@@ -1,5 +1,6 @@
 #include "OVModel.h"
 #include "OVOption.h"
+#include <vector>
 
 OVModel::OVModel(const char* fileName, OVShaderProg* shaderProg)
 {
@@ -12,14 +13,15 @@ OVModel::OVModel(const char* fileName, OVShaderProg* shaderProg)
 	}
 
 	char buf[1024];
+	int faceTmp;
 
 	fgets(buf, sizeof(buf), fp);
 	fgets(buf, sizeof(buf), fp);
-	sscanf(buf, "%d %d", &vert, &face);
+	sscanf(buf, "%d %d", &vert, &faceTmp);
 
 	vertArr = new vec4[vert];
 	normalArr = new vec4[vert];
-	indexArr = new GLuint[3 * face];
+	std::vector<GLuint>* indexTmp = new vector<GLuint>[faceTmp];
 
 	// vert
 	for (int i = 0; i < vert; i++)
@@ -50,25 +52,55 @@ OVModel::OVModel(const char* fileName, OVShaderProg* shaderProg)
 	}
 
 	// face
-	for (GLuint i = 0; i < face; i++)
+	face = 0;
+	for (GLuint i = 0; i < faceTmp; i++)
 	{
-		int dummy;
+		GLuint cnt, i1, i2, i0;
 		fgets(buf, sizeof(buf), fp);
 
-		if (sscanf(buf, "%d %u %u %u", &dummy, &indexArr[i * 3], &indexArr[i * 3 + 1], &indexArr[i * 3 + 2]) != 4)
+		if (sscanf(buf, "%u %u %u %u", &cnt, &i0, &i1, &i2) != 4)
 		{
 			i--;
 			continue;
 		}
 
-		vec3 a = vertArr[indexArr[i * 3]] - vertArr[indexArr[i * 3 + 1]];
-		vec3 b = vertArr[indexArr[i * 3 + 1]] - vertArr[indexArr[i * 3 + 2]];
-		vec3 normal3 = cross(a, b);
-		vec4 normal = vec4(normal3.x, normal3.y, normal3.z, 0);
-		normalArr[indexArr[i * 3]] += normal;
-		normalArr[indexArr[i * 3 + 1]] += normal;
-		normalArr[indexArr[i * 3 + 2]] += normal;
+		char* ptr = strtok(buf, " ");
+		sscanf(ptr, "%u", &cnt);
+		face += cnt - 2;
+
+		for (int j = 0; j < cnt; j++)
+		{
+			ptr = strtok(nullptr, " ");
+			sscanf(ptr, "%u", &i0);
+			indexTmp[i].push_back(i0);
+		}
 	}
+	indexArr = new GLuint[3 * face];
+	
+	for (GLuint i = 0, k = 0; i < faceTmp; i++)
+	{
+		int i0 = indexTmp[i][0];
+		for (int j = 1; j < indexTmp[i].size() - 1; j++, k += 3)
+		{
+			int i1 = indexTmp[i][j];
+			int i2 = indexTmp[i][j + 1];
+
+			indexArr[k] = i0;
+			indexArr[k + 1] = i1;
+			indexArr[k + 2] = i2;
+
+			vec3 a = vertArr[i0] - vertArr[i1];
+			vec3 b = vertArr[i1] - vertArr[i2];
+			vec3 normal3 = cross(a, b);
+			vec4 normal = vec4(normal3.x, normal3.y, normal3.z, 0);
+			if (OVOption::getInstance()->getNormal() == 1)
+				normal *= -1;
+			normalArr[i0] += normal;
+			normalArr[i1] += normal;
+			normalArr[i2] += normal;
+		}
+	}
+	delete[] indexTmp;
 
 	for (int i = 0; i < vert; i++)
 		normalArr[i] = normalize(normalArr[i]);
